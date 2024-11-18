@@ -1,0 +1,112 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Date Me</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Регистрация на Date Me</h2>
+
+            <!-- Форма регистрации -->
+            <form method="POST" action="{% url 'users:registration' %}">
+                {% csrf_token %}
+
+                <!-- Имя -->
+                <div class="input-group">
+                    <label for="id_first_name">Имя</label>
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="error">
+                            {% for error in form.first_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Фамилия -->
+                <div class="input-group">
+                    <label for="id_last_name">Фамилия</label>
+                    {{ form.last_name }}
+                    {% if form.lastname.errors %}
+                        <div class="error">
+                            {% for error in form.last_name.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Электронная почта -->
+                <div class="input-group">
+                    <label for="id_email">Электронная почта</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="error">
+                            {% for error in form.email.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Номер телефона -->
+                <div class="input-group">
+                    <label for="id_phone_number">Номер телефона</label>
+                    {{ form.phone_number }}
+                    {% if form.phone_number.errors %}
+                        <div class="error">
+                            {% for error in form.phone_number.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Пароль -->
+                <div class="input-group">
+                    <label for="id_password1">Пароль</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <div class="error">
+                            {% for error in form.password1.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Подтверждение пароля -->
+                <div class="input-group">
+                    <label for="id_password2">Подтвердите пароль</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="error">
+                            {% for error in form.password2.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Кнопка отправки формы -->
+                <div class="input-group">
+                    <button type="submit" class="submit-btn">Зарегистрироваться</button>
+                </div>
+
+                <!-- Ссылка на страницу входа для уже зарегистрированных пользователей -->
+                <div class="redirect-link">
+                    <p>Уже есть аккаунт? <a href="#">Войдите</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
