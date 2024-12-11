@@ -4,10 +4,12 @@ from django.contrib.auth.models import AbstractUser,Group,Permission
 #from django.contrib.gis.db import models
 
 class User(AbstractUser):
+    username = models.CharField(default='user',max_length=50,unique=True,blank=False)
     first_name = models.CharField(max_length=50,blank=False)
     last_name = models.CharField(max_length=150,blank=False)
-    email = models.EmailField(blank=False)
+    email = models.EmailField(unique=True,blank=False)
     phone_number = models.CharField(max_length=11,blank=False,null=True)
+
 
     groups = models.ManyToManyField(
         Group,
@@ -26,11 +28,11 @@ class User(AbstractUser):
 
     class Meta:
         db_table='user'
-        verbose_name = "Пользователя"
+        verbose_name = "Пользователь"
         verbose_name_plural = 'Пользователи'
     
     def __str__(self):
-        return self.name
+        return f'Пользователь {self.first_name} {self.last_name}'
 
 
 class UsersMedia(models.Model):

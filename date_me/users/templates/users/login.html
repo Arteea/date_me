@@ -9,16 +9,10 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-
-  <div class="container">
-    <h1>{{ title }}</h1>
-
-    <!-- Выводим данные о текущем пользователе -->
-    <p>Имя: {{ user.first_name }}</p>
-    <p>Фамилия: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-
- 
-
+    <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+    </form>
 </body>
 </html>

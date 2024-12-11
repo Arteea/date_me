@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from users.models import User,UserInfo,UsersMedia
+
+admin.site.register(User)
+admin.site.register(UserInfo)
+admin.site.register(UsersMedia)

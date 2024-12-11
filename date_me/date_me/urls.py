@@ -16,8 +16,45 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+# Импорты
+from rest_framework import permissions
+from rest_framework.schemas import get_schema_view
+from drf_yasg.views import get_schema_view as yasg_get_schema_view
+from drf_yasg import openapi
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
+
+from users.tokens import CustomTokenObtainPairView
+from users.views import UserProfileView
+
+
+# Схема OpenAPI для DRF
+schema_view = yasg_get_schema_view(
+    openapi.Info(
+        title="Date_me",
+        default_version='v1',
+        description="Description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@myapi.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls')),
+    # path('',include('rest_framework.urls')),
+    path('users/', include('users.urls')),
+    path('api/token/accounts/profile/<int:user_id>/',UserProfileView.as_view({'get':'profile','put':'profile'})),
+    path('api/token/accounts/create_profile/',UserProfileView.as_view({'post':'create_profile'})),
+    path('docs/', schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
