@@ -34,7 +34,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                     decoded_token=jwt.decode(access_token, SECRET_KEY, algorithms=[SIMPLE_JWT.get('ALGORITHM')])
                     print(decoded_token)  
         
-                    user_id = decoded_token.get('user_id')  # Или используйте нужный ключ, в зависимости от того, как вы строите токен
+                    user_id = decoded_token.get('user_id')
                     print(f"user_id: {user_id}")
                     response.data['user_id']=user_id
 

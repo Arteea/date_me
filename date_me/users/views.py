@@ -1,6 +1,6 @@
 from urllib import response
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView,UpdateView
 from django.contrib.auth.views import LoginView
@@ -13,12 +13,16 @@ from django.contrib import auth
 from rest_framework import viewsets,mixins,status
 from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
-from .serializers import UserSerializer,UserInfoSerializer
+from .serializers import UserSerializer,UserInfoSerializer,ButtonActionSerializer,NameSurnameSerializer,GenderSerializer,ContactInfoSerializer
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from .permissions import IsAuthenticatedAndOwner
 from rest_framework import permissions
 from rest_framework.decorators import action
+
+
+
+from django.contrib.auth.hashers import make_password
 
 
 class UserRegistrationView(CreateAPIView):
@@ -32,9 +36,9 @@ class UserRegistrationView(CreateAPIView):
 
 
 class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.UpdateModelMixin,GenericViewSet):
-        # queryset = UserInfo.objects.all()
         serializer_class=UserInfoSerializer
         # permission_classes=(IsAuthenticatedAndOwner, )
+        
         def get_queryset(self):
             return UserInfo.objects.filter(user=self.request.user)
 
@@ -64,13 +68,7 @@ class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.U
             
                 print(f"Serializer - {serializer}")
                 super().perform_update(serializer)
-                # if getattr(profile, '_prefetched_objects_cache', None):
-                # If 'prefetch_related' has been applied to a queryset, we need to
-                # forcibly invalidate the prefetch cache on the instance.
-                    # profile._prefetched_objects_cache = {}
-                # data=serializer.data
-                # data['message']='Профиль обновлен'
-                # print(data)
+
                 return Response(serializer.data,status=status.HTTP_200_OK)
 
             
@@ -90,10 +88,104 @@ class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.U
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         
         
+
+
+
+class RegisterOrLoginView(APIView):
+
+    serializer_class=ButtonActionSerializer
+
+    def post(self,request):
+        action=request.data.get('action')
+        if action=='signup':
+            return redirect("select_gender/", status=status.HTTP_200_OK)  #"registration/"
+        elif action=='login':
+            return redirect("api/token/", status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class SelectGenderView(GenericViewSet):
+
+    serializer_class=GenderSerializer
+
+    @action(detail=False,method=['post'],url_path='select_gender')
+    def select_gender(self,request):
+        gender=request.data.get('gender')
+        redirect_url='/enter_name_surname/'
+        user_info_data={'sex':gender}
+        request.session["user_info_data"]=user_info_data
+        print(f'data-{gender}')
+        return redirect(redirect_url)
+    
+
+
+class EnterNameSurnameView(GenericViewSet):
+
+    serializer_class=NameSurnameSerializer
+        
+    @action(detail=False,method=["post"],url_path='enter_name_surname')
+    def enter_name_surname(self,request,*args,**kwargs):
+        redirect_url='/enter_contact_info/'
+        user_data={}
+        print(f'DATA-{user_data}')
+        first_name=request.data.get('first_name')
+        last_name=request.data.get('last_name')
+        user_data["first_name"]=first_name
+        user_data["last_name"]=last_name
+
+        serializer=NameSurnameSerializer(data=user_data)
+
+        if serializer.is_valid():
+            request.session["user_data"]=user_data
+            return redirect(redirect_url)
+        else:
+            return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_200_OK)
+
+        
+    
+
+
+
+
+class EnterContactInfoView(GenericViewSet):
+
+    serializer_class=ContactInfoSerializer
+
+    @action(detail=False,method=["post"],url_path='enter_contact_info')
+    def enter_contact_info(self,request,*args,**kwargs):
+
+        name_data=request.session.get('user_data')        #First_name,last_name data for future User.object creation
+        user_data={}                                      #Dict for later gathering of all user's data for User.object creation 
+        user_info=request.data.items()
+        
+        for key,value in user_info:
+            if key=='csrfmiddlewaretoken':
+                pass
+            elif key=='password':
+                user_data[key]=make_password(value)
+            else:
+                user_data[key]=value
+
+        serializer=ContactInfoSerializer(data=user_data)
+
+        if serializer.is_valid():
+            user_data.update(name_data)
+            # return Response(f"User_data-{user_data}")
+            new_user=User(**user_data)
+            new_user.save()
+            return redirect('/api/token/',status=status.HTTP_200_OK)            
+        else:
+            return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_400_BAD_REQUEST)
+
+        
+        
         
         
             
-            
+          
             
 
 

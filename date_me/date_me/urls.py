@@ -29,7 +29,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from users.tokens import CustomTokenObtainPairView
-from users.views import UserProfileView
+from users.views import UserProfileView,SelectGenderView,EnterNameSurnameView,EnterContactInfoView
 
 
 # Схема OpenAPI для DRF
@@ -49,11 +49,17 @@ schema_view = yasg_get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',include('rest_framework.urls')),
-    path('users/', include('users.urls')),
+    path('', include('users.urls')),
     path('api/token/accounts/profile/<int:user_id>/',UserProfileView.as_view({'get':'profile','put':'profile'})),
     path('api/token/accounts/create_profile/',UserProfileView.as_view({'post':'create_profile'})),
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
+
+
+    path('select_gender/',SelectGenderView.as_view({'post':'select_gender'})),
+    path('enter_name_surname/',EnterNameSurnameView.as_view({'post':'enter_name_surname'})),
+    path('enter_contact_info/',EnterContactInfoView.as_view({'post':'enter_contact_info'})),
+    
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),

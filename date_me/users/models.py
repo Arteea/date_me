@@ -1,6 +1,7 @@
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser,Group,Permission
+from django.core.validators import RegexValidator
 #from django.contrib.gis.db import models
 
 class User(AbstractUser):
@@ -8,7 +9,8 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50,blank=False)
     last_name = models.CharField(max_length=150,blank=False)
     email = models.EmailField(unique=True,blank=False)
-    phone_number = models.CharField(max_length=11,blank=False,null=True)
+    phone_number = models.CharField(max_length=12,blank=True,null=True,unique=True,validators=[RegexValidator(regex=r'^\+7\d{10}$', message="Формат: '+7XXXXXXXXXX'.")])
+    password=models.CharField(max_length=128,blank=False)
 
 
     groups = models.ManyToManyField(
@@ -49,15 +51,19 @@ class UsersMedia(models.Model):
 
 
 
+
+
+
 class UserInfo(models.Model):
     user = models.ForeignKey(to=User,on_delete=models.CASCADE, verbose_name='Пользователь')
     description = models.TextField(max_length=350,blank=True,verbose_name='Описание')
     birth_date = models.DateField(blank=False,verbose_name="Дата рождения")
-    sex = models.BooleanField(verbose_name='Пол')
     birth_place = models.CharField(max_length=100,verbose_name='Место рождения')
     birth_time = models.TimeField(verbose_name='Время рождения')
     height = models.IntegerField(verbose_name='Рост')
+    sex = models.CharField(max_length=6,choices=[('male', 'Мужской'), ('female', 'Женский')],verbose_name='Пол')
     #location = models.PointField(blank=True,verbose_name='Географическая точка')
+
 
     class Meta:
         db_table = 'userinfo'
