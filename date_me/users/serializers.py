@@ -87,7 +87,7 @@ class ContactInfoSerializer(serializers.ModelSerializer):
 
         def validate_username(self,username):
             if User.objects.filter(username=username).exists():
-                raise serializers.ValidationError('Пользователь с таким email уже зарегестрирован')
+                raise serializers.ValidationError('Пользователь с таким username уже зарегестрирован')
             return username
         
         # def validate_password(self,password):

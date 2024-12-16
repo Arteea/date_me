@@ -29,7 +29,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from users.tokens import CustomTokenObtainPairView
-from users.views import UserProfileView,SelectGenderView,EnterNameSurnameView,EnterContactInfoView
+from users.views import UserProfileView,SelectGenderView,EnterNameSurnameView,EnterContactInfoView,ConfirmEmailView
 
 
 # Схема OpenAPI для DRF
@@ -63,4 +63,6 @@ urlpatterns = [
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
+    path('confirm_email/<str:token>/', ConfirmEmailView.as_view()),
 ]

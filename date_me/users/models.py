@@ -11,6 +11,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True,blank=False)
     phone_number = models.CharField(max_length=12,blank=True,null=True,unique=True,validators=[RegexValidator(regex=r'^\+7\d{10}$', message="Формат: '+7XXXXXXXXXX'.")])
     password=models.CharField(max_length=128,blank=False)
+    is_verified=models.BooleanField(default=False)
 
 
     groups = models.ManyToManyField(

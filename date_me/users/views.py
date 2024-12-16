@@ -25,6 +25,13 @@ from rest_framework.decorators import action
 from django.contrib.auth.hashers import make_password
 
 
+
+from django.core.mail import send_mail
+
+
+from .sender import send_message, verify_token
+
+
 class UserRegistrationView(CreateAPIView):
     serializer_class=UserSerializer
 
@@ -174,11 +181,30 @@ class EnterContactInfoView(GenericViewSet):
         if serializer.is_valid():
             user_data.update(name_data)
             # return Response(f"User_data-{user_data}")
+            send_message(user_data)
             new_user=User(**user_data)
             new_user.save()
-            return redirect('/api/token/',status=status.HTTP_200_OK)            
+            # return redirect('/api/token/',status=status.HTTP_200_OK)
+            return Response(f'mail on {user_data["email"]} was sent',status=status.HTTP_200_OK)            
         else:
             return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class ConfirmEmailView(APIView):
+
+    def get(request,*args,token,**kwargs):
+        print(f'TOKEN-------{token}')
+        email=verify_token(token)
+
+        if email:
+            User.objects.filter(email=email).update(is_verified=True)
+            return Response({"detail": "Email успешно подтвержден!"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "Ссылка недействительна или истек срок действия токена."}, status=status.HTTP_400_BAD_REQUEST)
+
+
 
         
         
