@@ -29,7 +29,14 @@ from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
 
 
-from .sender import send_message, verify_token
+from .sender import send_message, verify_token,send_confirmation
+
+
+
+
+import pika
+
+
 
 
 class UserRegistrationView(CreateAPIView):
@@ -181,11 +188,12 @@ class EnterContactInfoView(GenericViewSet):
         if serializer.is_valid():
             user_data.update(name_data)
             # return Response(f"User_data-{user_data}")
-            send_message(user_data)
+            # send_message(user_data)
+            send_confirmation(user_data)
             new_user=User(**user_data)
             new_user.save()
-            # return redirect('/api/token/',status=status.HTTP_200_OK)
-            return Response(f'mail on {user_data["email"]} was sent',status=status.HTTP_200_OK)            
+            return redirect('/api/token/',status=status.HTTP_200_OK)
+            # return Response(f'mail on {user_data["email"]} was sent',status=status.HTTP_200_OK)            
         else:
             return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_400_BAD_REQUEST)
 
