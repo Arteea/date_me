@@ -2,14 +2,9 @@ from rest_framework import permissions
 
 class IsAuthenticatedAndOwner(permissions.BasePermission):
 
-
-    # def has_object_permission(self,request,view,obj):
-    #     print(obj.user==request.user)
-    
-    
-    def has_permission(self,request,view):
+    def has_permission(self,request,view,**kwargs):
         if request.user.is_staff:
             return True
-        pk=view.kwargs.get('pk',None)
-        print(request.data)
-        return bool(int(request.user.id)==int(pk))
+        pk=view.kwargs.get('user_id',None)
+        if pk:
+            return bool(int(request.user.id)==int(pk))

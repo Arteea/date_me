@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import User, UserInfo
 import re
+from datetime import date
 
 
 from django.contrib.auth.hashers import make_password
@@ -43,7 +44,22 @@ class ButtonActionSerializer(serializers.Serializer):
 
 
 class GenderSerializer(serializers.Serializer):
+
     gender = serializers.ChoiceField(choices=["male", "female"])
+    birth_date = serializers.DateField()
+
+    def validate_birth_date(self,birth_date):
+        if not birth_date:
+            raise serializers.ValidationError('Поле "Дата рождения" не должно быть пустым')
+        elif date.today()<birth_date:
+            raise serializers.ValidationError('Дата рождения не может быть в будущем')
+        today=date.today()
+        age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+        if age<18:
+            raise serializers.ValidationError('Возраст должен быть не менее 18 лет')
+        return birth_date
+
+
 
 class NameSurnameSerializer(serializers.ModelSerializer):
     class Meta:

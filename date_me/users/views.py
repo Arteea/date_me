@@ -7,6 +7,7 @@ from django.contrib.auth.views import LoginView
 from users.models import User,UserInfo
 from .forms import ProfileUserForm, RegistrationUserForm
 from django.contrib import auth
+from django.contrib.auth.models import AnonymousUser
 
 
 # from rest_framework import generics
@@ -32,9 +33,10 @@ from django.core.mail import send_mail
 from .sender import send_message, verify_token,send_confirmation
 
 
-
+from zodiac.utils import get_zodiac_id
 
 import pika
+
 
 
 
@@ -51,7 +53,7 @@ class UserRegistrationView(CreateAPIView):
 
 class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.UpdateModelMixin,GenericViewSet):
         serializer_class=UserInfoSerializer
-        # permission_classes=(IsAuthenticatedAndOwner, )
+        permission_classes=(IsAuthenticatedAndOwner, )
         
         def get_queryset(self):
             return UserInfo.objects.filter(user=self.request.user)
@@ -59,9 +61,6 @@ class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.U
 
         @action(detail=True, methods=['get','put'], url_path='profile')
         def profile(self,request,user_id,*args,**kwargs):
-            # user=response.data['user_id']
-            print('Запуск профиля')
-            # profile = UserInfo.objects.all.get(user_id=user)
             
             if request.method=='GET':
                 profile =UserInfoSerializer(UserInfo.objects.filter(user_id=user_id).first())
@@ -75,31 +74,25 @@ class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.U
                 
                 partial = kwargs.pop('partial', True)
 
-                print(f'update_profile:{user_id}')
-
                 serializer = self.get_serializer(profile, data=request.data, partial=partial)
                 serializer.is_valid(raise_exception=True)
-            
-                print(f"Serializer - {serializer}")
                 super().perform_update(serializer)
 
                 return Response(serializer.data,status=status.HTTP_200_OK)
 
-            
-
-        
         
         @action(detail=False,methods=['post'],url_path='create_profile')
         def create_profile(self, request, *args, **kwargs):
             user=request.user.id
             if UserInfo.objects.filter(user_id=user).exists():
                 return Response({'error':'Профиль уже существует'},status=status.HTTP_400_BAD_REQUEST)
-            
-            serializer = self.get_serializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save(user=request.user)
-                return Response(serializer.data,status=status.HTTP_201_CREATED)
-            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+            if request.user.is_authenticated:
+                serializer = self.get_serializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save(user=request.user)
+                    return Response(serializer.data,status=status.HTTP_201_CREATED)
+                return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse('User not authenticated')
         
         
 
@@ -128,11 +121,16 @@ class SelectGenderView(GenericViewSet):
     @action(detail=False,method=['post'],url_path='select_gender')
     def select_gender(self,request):
         gender=request.data.get('gender')
+        birth_date=request.data.get('birth_date')
         redirect_url='/enter_name_surname/'
-        user_info_data={'sex':gender}
-        request.session["user_info_data"]=user_info_data
-        print(f'data-{gender}')
-        return redirect(redirect_url)
+        user_info_data={'gender':gender,'birth_date':birth_date}     #dict for later creating UserInfo object
+        serializer=GenderSerializer(data=user_info_data)
+        if serializer.is_valid():
+            user_info_data['zodiac_id']=get_zodiac_id(birth_date,gender)   #determination zodiac sign for user according to his birth date 
+            request.session["user_info_data"]=user_info_data
+            return redirect(redirect_url)
+        else:
+            return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_200_OK)
     
 
 
@@ -144,7 +142,6 @@ class EnterNameSurnameView(GenericViewSet):
     def enter_name_surname(self,request,*args,**kwargs):
         redirect_url='/enter_contact_info/'
         user_data={}
-        print(f'DATA-{user_data}')
         first_name=request.data.get('first_name')
         last_name=request.data.get('last_name')
         user_data["first_name"]=first_name
@@ -171,10 +168,11 @@ class EnterContactInfoView(GenericViewSet):
     @action(detail=False,method=["post"],url_path='enter_contact_info')
     def enter_contact_info(self,request,*args,**kwargs):
 
-        name_data=request.session.get('user_data')        #First_name,last_name data for future User.object creation
-        user_data={}                                      #Dict for later gathering of all user's data for User.object creation 
+        name_data=request.session.get('user_data')        ###First_name,last_name data for future User.object creation
+        user_data={}                                      ###Dict for later gathering of all user's data for User.object creation 
         user_info=request.data.items()
-        
+
+
         for key,value in user_info:
             if key=='csrfmiddlewaretoken':
                 pass
@@ -186,14 +184,21 @@ class EnterContactInfoView(GenericViewSet):
         serializer=ContactInfoSerializer(data=user_data)
 
         if serializer.is_valid():
+            ###Creation new User object
             user_data.update(name_data)
-            # return Response(f"User_data-{user_data}")
-            # send_message(user_data)
-            send_confirmation(user_data)
+            send_confirmation(user_data) ###Email confirmation via rabbitmq
             new_user=User(**user_data)
-            new_user.save()
-            return redirect('/api/token/',status=status.HTTP_200_OK)
-            # return Response(f'mail on {user_data["email"]} was sent',status=status.HTTP_200_OK)            
+            new_user.save() 
+
+            ###Creation new UserInfo object
+            user_info_data=request.session.get('user_info_data')
+            user_id=User.objects.filter(email=new_user.email).first().id
+            user_info_data['user_id'] = user_id
+            new_user_info=UserInfo(**user_info_data)
+            new_user_info.save()
+
+            # return redirect('/api/token/',status=status.HTTP_200_OK)
+            return Response(f'mail on {user_data["email"]} was sent',status=status.HTTP_200_OK)            
         else:
             return Response(f"Ошибка валидации {serializer.errors}",status=status.HTTP_400_BAD_REQUEST)
 
