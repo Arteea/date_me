@@ -33,6 +33,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                     user_id = decoded_token.get('user_id')
                     user= User.objects.get(id=user_id)
                     login(request, user)
+                    request.session['user_id']=user_id
                     response.data['user_id']=user_id
 
                 except jwt.ExpiredSignatureError:

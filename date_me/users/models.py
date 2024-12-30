@@ -1,7 +1,7 @@
 from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser,Group,Permission
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator,MaxValueValidator,MinValueValidator
 #from django.contrib.gis.db import models
 from zodiac.models import Zodiac
 
@@ -49,6 +49,7 @@ class UserInfo(models.Model):
     height = models.IntegerField(blank=True,verbose_name='Рост',null=True)
     gender = models.CharField(max_length=6,choices=[('male', 'Мужской'), ('female', 'Женский')],verbose_name='Пол')
     zodiac = models.ForeignKey(to=Zodiac,on_delete=models.SET_NULL,null=True,blank=True,verbose_name='Знак зодиака')
+    compatability_preferences = models.IntegerField(default=50,validators=[MinValueValidator(50),MaxValueValidator(100)])
     #location = models.PointField(blank=True,verbose_name='Географическая точка')
 
 

@@ -55,7 +55,7 @@ urlpatterns = [
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
 
-
+    path('',include('compatability.urls')),
     path('select_gender/',SelectGenderView.as_view({'post':'select_gender'})),
     path('enter_name_surname/',EnterNameSurnameView.as_view({'post':'enter_name_surname'})),
     path('enter_contact_info/',EnterContactInfoView.as_view({'post':'enter_contact_info'})),

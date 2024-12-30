@@ -94,7 +94,8 @@ class UserProfileView(mixins.CreateModelMixin,mixins.RetrieveModelMixin,mixins.U
                 return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
             return HttpResponse('User not authenticated')
         
-        
+
+
 
 
 
@@ -205,10 +206,10 @@ class EnterContactInfoView(GenericViewSet):
 
 
 
+
 class ConfirmEmailView(APIView):
 
     def get(request,*args,token,**kwargs):
-        print(f'TOKEN-------{token}')
         email=verify_token(token)
 
         if email:

@@ -212,9 +212,9 @@ SIMPLE_JWT = {
 
 #SMTP
 
-# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #Для теста в консоле
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #Для теста в консоле
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
