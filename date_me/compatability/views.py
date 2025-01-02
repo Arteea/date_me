@@ -16,6 +16,8 @@ from rest_framework.decorators import action
 
 from django.db.models import Q
 
+from dialogs.models import Pair,Dialog
+
 
 class CompatabilityView(viewsets.ViewSet):
 
@@ -56,7 +58,7 @@ class CompatabilityView(viewsets.ViewSet):
             return Response({"No more candidates available"}, status=404)
 
         candidate=candidates[0]
-        
+
         candidate_response=CandidateSerializer(candidate)
         return Response(candidate_response.data, status=200)
         
@@ -87,8 +89,22 @@ class CompatabilityView(viewsets.ViewSet):
                 candidate_id=candidate.user,
                 action=(action == 'Yes'),
             )
-               
-            return redirect('http://127.0.0.1:8000/pairs/', status=200)
+
+
+            ### Pair creation logic
+            if action == 'Yes':
+                mutual_swipe = Swipes.objects.filter(
+                swiper_id=candidate.user,
+                candidate_id=userinfo.user,
+                action=True,
+            ).exists()
+                if mutual_swipe:
+                    ### Object creation
+                    Pair.objects.create(first_participant=userinfo.user,second_participant=candidate.user,)
+                    
+
+            redirect_url='http://127.0.0.1:8000/pairs/'
+            return Response({"message":f'Pair with {candidate.user.first_name} created','redirect_url':redirect_url,}, status=200)
         else:
             return Response(serializer.errors, status=400)
 

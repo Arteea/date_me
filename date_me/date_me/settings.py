@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'users',
     'zodiac',
     'compatability',
+    'dialogs',
 ]
 
 MIDDLEWARE = [
