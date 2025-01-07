@@ -54,7 +54,7 @@ urlpatterns = [
     path('api/token/accounts/create_profile/',UserProfileView.as_view({'post':'create_profile'})),
     path('docs/', schema_view.with_ui('redoc', cache_timeout=0),
          name='schema-redoc'),
-
+    path('',include('dialogs.urls')),
     path('',include('compatability.urls')),
     path('select_gender/',SelectGenderView.as_view({'post':'select_gender'})),
     path('enter_name_surname/',EnterNameSurnameView.as_view({'post':'enter_name_surname'})),

@@ -10,7 +10,25 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 import os
 
 from django.core.asgi import get_asgi_application
+from django.urls import path
+from dialogs.consumers import ChatConsumer 
+
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+
+from dialogs.routing import websocket_urlpatterns
+
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'date_me.settings')
 
-application = get_asgi_application()
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter([
+            path("ws/chat/<str:dialog_id>/", ChatConsumer.as_asgi()),  # Обработчик для WebSocket
+        ])
+    ),
+})
+

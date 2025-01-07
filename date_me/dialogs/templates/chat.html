@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+</head>
+<body>
+    <h1>Chat Room: <span id="dialog-id"></span></h1>
+    
+    <!-- Отображение сообщений -->
+    <div id="messages" style="border: 1px solid #ccc; padding: 10px; max-height: 300px; overflow-y: scroll;">
+    </div>
+
+    <input type="hidden" id="user-id" value="{{ user_id }}">
+
+
+    <!-- Форма для отправки сообщений -->
+    <textarea id="message-input" placeholder="Type a message..."></textarea>
+    <button id="send-button">Send</button>
+
+    <script>
+        const path = window.location.pathname;
+console.log("Full Path:", path);
+
+const dialogId = path.split('/').filter(part => part).pop();
+console.log("Dialog ID:", dialogId);  // Получаем правильное значение dialog_id
+if (dialogId) {
+    document.getElementById('dialog-id').innerText = dialogId;
+    
+    //Получаем сериализованные сообщения из контекста
+    const previousMessages = JSON.parse('{{ previous_messages|escapejs }}');
+
+    const messagesDiv = document.getElementById('messages');
+
+    // Рендеринг сообщений
+    previousMessages.forEach(msg => {
+        const messageContainer = document.createElement('div');
+        messageContainer.innerHTML = `<strong>${msg.author_name}</strong>: ${msg.body} <small>(${msg.timestamp})</small>`;
+        messagesDiv.appendChild(messageContainer);
+    });
+
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;  // Автопрокрутка вниз
+
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/' + dialogId + '/');
+
+    chatSocket.onopen = function(e) {
+        console.log("WebSocket connection established");
+    };
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        const message = data['message'];
+
+        const messageContainer = document.createElement('div');
+        messageContainer.textContent = message;
+        document.getElementById('messages').appendChild(messageContainer);
+
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    };
+
+    chatSocket.onclose = function(e) {
+        console.log("WebSocket connection closed");
+    };
+
+    document.getElementById('send-button').onclick = function() {
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value;
+
+        if (message) {
+            // Добавьте user_id в отправляемые данные
+            const userId = document.getElementById('user-id').value || 'Anonymous'; // Или другой способ получения user_id
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'user_id': userId
+            }));
+            messageInput.value = '';
+        }
+    };
+
+    document.getElementById('message-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('send-button').click();
+        }
+    });
+} else {
+    console.error("Dialog ID is missing in the URL");
+}
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Chat with dialog 1</h1>
+    <div id="chat">
+        <div id="messages"></div>
+        <input type="text" id="message_input" placeholder="Type your message here">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    
+    <script>
+        const dialog_id = 1;  // Здесь указываете ID диалога
+        const socket = new WebSocket(`ws://localhost:8000/ws/chat/${dialog_id}/`);
+
+        socket.onopen = () => {
+            console.log('Connection established');
+        };
+
+        socket.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            const messagesDiv = document.getElementById('messages');
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message.content;
+            messagesDiv.appendChild(messageElement);
+        };
+
+        socket.onerror = (error) => {
+            console.log('WebSocket Error: ' + error);
+        };
+
+        socket.onclose = () => {
+            console.log('Connection closed');
+        };
+
+        // Отправка сообщения через WebSocket
+        function sendMessage() {
+            const messageInput = document.getElementById('message_input');
+            const message = messageInput.value;
+            socket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInput.value = '';  // Очистить поле ввода после отправки
+        }
+    </script>
+</body>
+</html> {% endcomment %}
