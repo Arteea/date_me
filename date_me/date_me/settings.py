@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'rest_framework',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'zodiac',
     'compatability',
     'dialogs',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,23 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'date_me.wsgi.application'
+
+
+###Settings for dialog application
+
+ASGI_APPLICATION = 'date_me.asgi.application'
+
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(REDIS_HOST,REDIS_PORT)],
+        },
+    },
+}
 
 
 # Database
