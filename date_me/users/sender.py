@@ -13,6 +13,7 @@ import json
 from dotenv import load_dotenv
 from date_me import settings
 import os
+
 load_dotenv()
 
 def send_message(data):

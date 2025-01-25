@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User, UserInfo
 import re
 from datetime import date
+from django.contrib.auth.hashers import make_password
 
 
 from django.contrib.auth.hashers import make_password
@@ -33,14 +34,30 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserInfoSerializer(serializers.ModelSerializer):
     user=serializers.HiddenField(default=serializers.CurrentUserDefault())
+    
     class Meta:
         model = UserInfo
         fields = '__all__'
+
+    def get_queryset(self):
+        return UserInfo.objects.filter(user=self.request.user)
+    
+    ###Убираем поле id для корректного сериализованного представления ,которое отправляется на фронтенд
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation.pop('id', None)
+        return representation
+
+
+
 
 
 
 class ButtonActionSerializer(serializers.Serializer):
     action = serializers.ChoiceField(choices=["login", "signup"])
+
+
+
 
 
 class GenderSerializer(serializers.Serializer):
@@ -58,6 +75,8 @@ class GenderSerializer(serializers.Serializer):
         if age<18:
             raise serializers.ValidationError('Возраст должен быть не менее 18 лет')
         return birth_date
+
+
 
 
 
@@ -106,11 +125,9 @@ class ContactInfoSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Пользователь с таким username уже зарегестрирован')
             return username
         
-        # def validate_password(self,password):
-        #     if not re.match(r'^(?:[a-zA-Z]+|\d+|[!@#$%^&*()_+=-]+|.{0,7})$',password):
-        #         raise serializers.ValidationError('Пароль слишком слабый') 
-        #     return password
-
+        def validate_password(self,password):
+            new_password = make_password(password) 
+            return new_password
 
         
 

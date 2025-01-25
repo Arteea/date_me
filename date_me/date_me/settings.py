@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'daphne',
+    'corsheaders',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'rest_framework',
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +65,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Адрес фронтенда
 ]
 
 ROOT_URLCONF = 'date_me.urls'
@@ -82,6 +96,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'date_me.wsgi.application'
 
@@ -163,6 +179,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -179,11 +197,6 @@ AUTH_USER_MODEL = 'users.User'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
     ],
 }
 
@@ -197,7 +210,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 
     "ALGORITHM": os.getenv('ALGORITHM'),
-    "SIGNING_KEY": os.getenv('SECRET_KEY'),
+    "SIGNING_KEY": os.getenv('SIGNING_KEY'),
     "VERIFYING_KEY": None,
     "AUDIENCE": None,
     "ISSUER": None,
@@ -205,7 +218,7 @@ SIMPLE_JWT = {
     "JWK_URL": None,
     "LEEWAY": 0,
 
-    "AUTH_HEADER_TYPES": os.getenv("AUTH_HEADER_TYPES"),
+    "AUTH_HEADER_TYPES": os.getenv('AUTH_HEADER_TYPES'),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
@@ -221,8 +234,11 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
     "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
 
-    "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
+    # "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
+    # "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "users.tokens.CustomTokenObtainPairSerializer",
     "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
+    
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",

@@ -38,7 +38,7 @@ signer = TimestampSigner()
 
 def generate_link(user_email):
     token=signer.sign(user_email)
-    return f"http://127.0.0.1:8000/confirm_email/{token}"
+    return f"http://127.0.0.1:3000/confirm_email/?token={token}"
     # return f"{request.scheme}://{request.get_host()}{base_url}?{query_string}"
 
 
@@ -58,23 +58,23 @@ def callback(channel,method,properties,body):
 
 
 
-# def main():
+def main():
 
-#Connection to RabbitMQ
-credentials = pika.PlainCredentials(username='rmuser',password='rmpassword')
-params=pika.ConnectionParameters(host='127.0.0.1',port='5672',credentials=credentials)
-connection=pika.BlockingConnection(params)
-channel =connection.channel()
+    #Connection to RabbitMQ
+    credentials = pika.PlainCredentials(username='rmuser',password='rmpassword')
+    params=pika.ConnectionParameters(host='127.0.0.1',port='5672',credentials=credentials)
+    connection=pika.BlockingConnection(params)
+    channel =connection.channel()
 
-#Queue announcement
-channel.queue_declare(queue='email_queue', durable=True)
+    #Queue announcement
+    channel.queue_declare(queue='email_queue', durable=True)
 
-#Queue subscription
-channel.basic_consume(queue='email_queue', on_message_callback=callback)
+    #Queue subscription
+    channel.basic_consume(queue='email_queue', on_message_callback=callback)
 
-print('[*] Waiting for messages.')
-channel.start_consuming()
+    print('[*] Waiting for messages.')
+    channel.start_consuming()
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
 import os
-
+import django
 from django.core.asgi import get_asgi_application
 from django.urls import path
 from dialogs.consumers import ChatConsumer 
@@ -21,7 +21,8 @@ from dialogs.routing import websocket_urlpatterns
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'date_me.settings')
-
+print(os.environ["DJANGO_SETTINGS_MODULE"])
+django.setup()
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),

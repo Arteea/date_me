@@ -7,7 +7,7 @@ def get_zodiac_id(birth_date,gender):
     Определяет знак зодиака по дате рождения.
     
     :param birth_date: дата рождения (объект datetime.date)
-    :return: строка с названием знака зодиака
+    :return: id знака зодиака
     """
     
     zodiac_signs = [

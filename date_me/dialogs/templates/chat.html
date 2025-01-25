@@ -24,7 +24,7 @@
 console.log("Full Path:", path);
 
 const dialogId = path.split('/').filter(part => part).pop();
-console.log("Dialog ID:", dialogId);  // Получаем правильное значение dialog_id
+console.log("Dialog ID:", dialogId);  // Находим правильное значение dialog_id переданное в html
 if (dialogId) {
     document.getElementById('dialog-id').innerText = dialogId;
     
@@ -42,7 +42,7 @@ if (dialogId) {
 
     messagesDiv.scrollTop = messagesDiv.scrollHeight;  // Автопрокрутка вниз
 
-    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/' + dialogId + '/');
+    const chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/' + dialogId + '/'); //СОздание вебсокет соединения
 
     chatSocket.onopen = function(e) {
         console.log("WebSocket connection established");
@@ -52,13 +52,15 @@ if (dialogId) {
         const data = JSON.parse(e.data);
         const message = data['message'];
 
+        console.log("Received message:", message);  // Лог для проверки
+
         const messageContainer = document.createElement('div');
         messageContainer.textContent = message;
         document.getElementById('messages').appendChild(messageContainer);
 
         const messagesDiv = document.getElementById('messages');
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    };
+};
 
     chatSocket.onclose = function(e) {
         console.log("WebSocket connection closed");
