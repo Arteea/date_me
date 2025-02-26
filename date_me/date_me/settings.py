@@ -15,8 +15,16 @@ from pathlib import Path
 
 from datetime import timedelta
 
-load_dotenv()
 
+load_dotenv('.env.dev')
+
+DJANGO_ENV = 'dev'
+###Раскомментить на проде 
+# DJANGO_ENV = 'production'
+
+
+if DJANGO_ENV == 'production':
+    load_dotenv('.env.prod')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,16 +138,31 @@ CHANNEL_LAYERS = {
 # }
 
 
+###Раскомментировать при сборке докер-композ
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME":os.getenv('DB_NAME'),
-        'USER':os.getenv('DB_USER'),
-        'PASSWORD':os.getenv('DB_PASSWORD'),
-        'HOST':'localhost',
-        'PORT':'5432',
+        "NAME":os.getenv('POSTGRES_DB'),
+        'USER':os.getenv('POSTGRES_USER'),
+        'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
+        'HOST':'db',
+        'PORT':os.getenv('POSTGRES_PORT'),
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME":os.getenv('POSTGRES_DB'),
+#         'USER':os.getenv('POSTGRES_USER'),
+#         'PASSWORD':os.getenv('POSTGRES_PASSWORD'),
+#         'HOST':'localhost',
+#         'PORT':'5432',
+#     }
+# }
+
+
+
 
 
 
@@ -218,7 +241,7 @@ SIMPLE_JWT = {
     "JWK_URL": None,
     "LEEWAY": 0,
 
-    "AUTH_HEADER_TYPES": os.getenv('AUTH_HEADER_TYPES'),
+    "AUTH_HEADER_TYPES": (os.getenv('AUTH_HEADER_TYPES'),),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",

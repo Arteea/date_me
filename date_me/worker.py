@@ -6,11 +6,10 @@ import json
 from django.core.mail import send_mail
 from django.core.signing import TimestampSigner,SignatureExpired,BadSignature
 from datetime import timedelta
+import time
 
 
 
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'date_me.settings')
 django.setup()
 
 
@@ -62,7 +61,8 @@ def main():
 
     #Connection to RabbitMQ
     credentials = pika.PlainCredentials(username='rmuser',password='rmpassword')
-    params=pika.ConnectionParameters(host='127.0.0.1',port='5672',credentials=credentials)
+    rabbitmq_host = os.getenv("RABBITMQ_HOST", "rabbitmq")
+    params=pika.ConnectionParameters(host=rabbitmq_host,port=5672,credentials=credentials)
     connection=pika.BlockingConnection(params)
     channel =connection.channel()
 
@@ -77,4 +77,5 @@ def main():
 
 
 if __name__ == "__main__":
+    time.sleep(25)
     main()

@@ -1,0 +1,50 @@
+services:
+  web:
+    build: ./date_me
+    image: backend_prod:1.0.0
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000 --access-logfile '-'
+    ports:
+      - 127.0.0.1:8000:8000
+    restart: unless-stopped
+    env_file:
+      - ./date_me/.env.prod
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-bookworm
+    volumes:
+      - ./data:/var/lib/postgresql/data/
+    restart: unless-stopped
+    env_file:
+      - ./date_me/.env.dev  
+  
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    restart: unless-stopped
+    ports:
+      - 15672:15672
+      - 5672:5672
+    env_file:
+      - ./date_me/.env.dev
+
+  #Воркер для отправки сообщений-подтверждений на емейл через SMTP 
+  worker:
+    build:
+      context: ./date_me
+      dockerfile: Dockerfile.worker
+    env_file:
+      - ./date_me/.env.dev
+    environment:
+    - DJANGO_SETTINGS_MODULE=date_me.settings
+    volumes:
+      - ./date_me:/usr/src/date_me
+    restart: always
+    depends_on:
+      - rabbitmq
+
+
+volumes:
+  data:

@@ -58,8 +58,9 @@ def generate_link(user_email):
 #rabbitmq
 def send_confirmation(user_data):
     try:
-        credentials = pika.PlainCredentials(username=os.getenv('RABBIT_USERNAME'),password=os.getenv('RABBIT_PASSWORD'))
-        params=pika.ConnectionParameters(host='127.0.0.1',port='5672',credentials=credentials)
+        credentials = pika.PlainCredentials(username=os.getenv('RABBITMQ_DEFAULT_USER'),password=os.getenv('RABBITMQ_DEFAULT_PASS'))
+        rabbitmq_host = os.getenv("RABBITMQ_HOST", "rabbitmq")
+        params=pika.ConnectionParameters(host=rabbitmq_host,port=5672,credentials=credentials)
         #Соединение с rabbitmq
         connection=pika.BlockingConnection(params)
         channel = connection.channel()

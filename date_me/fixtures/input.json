@@ -1,0 +1,1333 @@
+[
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 1,
+      "gender_to": "male",
+      "compatability": 80
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 3,
+      "gender_to": "male",
+      "compatability": 65
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 5,
+      "gender_to": "male",
+      "compatability": 75
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 7,
+      "gender_to": "male",
+      "compatability": 60
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 9,
+      "gender_to": "male",
+      "compatability": 70
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 11,
+      "gender_to": "male",
+      "compatability": 50
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 13,
+      "gender_to": "male",
+      "compatability": 55
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 15,
+      "gender_to": "male",
+      "compatability": 80
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 17,
+      "gender_to": "male",
+      "compatability": 85
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 19,
+      "gender_to": "male",
+      "compatability": 60
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 21,
+      "gender_to": "male",
+      "compatability": 75
+  },
+  {
+      "zodiac_from": 2,
+      "gender_from": "female",
+      "zodiac_to": 23,
+      "gender_to": "male",
+      "compatability": 70
+  },
+  {
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatibility": 70
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatibility": 90
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatibility": 50
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatibility": 100
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatibility": 60
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatibility": 80
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatibility": 90
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatibility": 100
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatibility": 40
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatibility": 70
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatibility": 50
+},
+{
+    "zodiac_from": 4,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatibility": 80
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 55
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 55
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "compatability.compatability",
+  "fields": {
+    "zodiac_from": 6,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 1,
+  "gender_to": "male",
+  "compatibility": 77
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 3,
+  "gender_to": "male",
+  "compatibility": 89
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 5,
+  "gender_to": "male",
+  "compatibility": 82
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 7,
+  "gender_to": "male",
+  "compatibility": 86
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 9,
+  "gender_to": "male",
+  "compatibility": 83
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 11,
+  "gender_to": "male",
+  "compatibility": 80
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 13,
+  "gender_to": "male",
+  "compatibility": 75
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 15,
+  "gender_to": "male",
+  "compatibility": 70
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 17,
+  "gender_to": "male",
+  "compatibility": 65
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 19,
+  "gender_to": "male",
+  "compatibility": 60
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 21,
+  "gender_to": "male",
+  "compatibility": 55
+},
+{
+  "zodiac_from": 8,
+  "gender_from": "female",
+  "zodiac_to": 23,
+  "gender_to": "male",
+  "compatibility": 50
+}, {
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 1,
+      "gender_to": "male",
+      "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 3,
+      "gender_to": "male",
+      "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 5,
+      "gender_to": "male",
+      "compatability": 50
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 7,
+      "gender_to": "male",
+      "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 9,
+      "gender_to": "male",
+      "compatability": 90
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 11,
+      "gender_to": "male",
+      "compatability": 65
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 13,
+      "gender_to": "male",
+      "compatability": 75
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 15,
+      "gender_to": "male",
+      "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 17,
+      "gender_to": "male",
+      "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 19,
+      "gender_to": "male",
+      "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 21,
+      "gender_to": "male",
+      "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+      "zodiac_from": 10,
+      "gender_from": "female",
+      "zodiac_to": 23,
+      "gender_to": "male",
+      "compatability": 50
+  }
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 1,
+  "gender_to": "male",
+  "compatability": 60
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 3,
+  "gender_to": "male",
+  "compatability": 80
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 5,
+  "gender_to": "male",
+  "compatability": 50
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 7,
+  "gender_to": "male",
+  "compatability": 70
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 9,
+  "gender_to": "male",
+  "compatability": 60
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 11,
+  "gender_to": "male",
+  "compatability": 90
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 13,
+  "gender_to": "male",
+  "compatability": 65
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 15,
+  "gender_to": "male",
+  "compatability": 75
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 17,
+  "gender_to": "male",
+  "compatability": 55
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 19,
+  "gender_to": "male",
+  "compatability": 85
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 21,
+  "gender_to": "male",
+  "compatability": 50
+},
+{
+  "zodiac_from": 12,
+  "gender_from": "female",
+  "zodiac_to": 23,
+  "gender_to": "male",
+  "compatability": 65
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 1,
+  "gender_to": "male",
+  "compatability": 60
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 3,
+  "gender_to": "male",
+  "compatability": 75
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 5,
+  "gender_to": "male",
+  "compatability": 65
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 7,
+  "gender_to": "male",
+  "compatability": 50
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 9,
+  "gender_to": "male",
+  "compatability": 80
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 11,
+  "gender_to": "male",
+  "compatability": 55
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 13,
+  "gender_to": "male",
+  "compatability": 70
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 15,
+  "gender_to": "male",
+  "compatability": 85
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 17,
+  "gender_to": "male",
+  "compatability": 90
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 19,
+  "gender_to": "male",
+  "compatability": 60
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 21,
+  "gender_to": "male",
+  "compatability": 80
+},
+{
+  "zodiac_from": 14,
+  "gender_from": "female",
+  "zodiac_to": 23,
+  "gender_to": "male",
+  "compatability": 70
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 2,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 3,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 4,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 5,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 6,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 7,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 8,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 9,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 10,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 11,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 12,
+  "fields": {
+    "zodiac_from": 16,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 1,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 2,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 3,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 4,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 5,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 6,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 7,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 8,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 55
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 9,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 10,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 11,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 12,
+  "fields": {
+    "zodiac_from": 18,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 1,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 2,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 3,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 4,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 5,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 6,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 7,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 8,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 9,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 50
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 10,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 11,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "compatability.compatability",
+  "pk": 12,
+  "fields": {
+    "zodiac_from": 20,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 1,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 2,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 3,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 4,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 5,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 6,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 7,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 8,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 9,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 10,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 11,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 12,
+  "fields": {
+    "zodiac_from": 22,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 1,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 1,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 2,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 3,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 3,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 5,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 4,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 7,
+    "gender_to": "male",
+    "compatability": 80
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 5,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 9,
+    "gender_to": "male",
+    "compatability": 85
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 6,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 11,
+    "gender_to": "male",
+    "compatability": 55
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 7,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 13,
+    "gender_to": "male",
+    "compatability": 75
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 8,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 15,
+    "gender_to": "male",
+    "compatability": 90
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 9,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 17,
+    "gender_to": "male",
+    "compatability": 65
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 10,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 19,
+    "gender_to": "male",
+    "compatability": 60
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 11,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 21,
+    "gender_to": "male",
+    "compatability": 70
+  }
+},
+{
+  "model": "zodiac.compatability",
+  "pk": 12,
+  "fields": {
+    "zodiac_from": 24,
+    "gender_from": "female",
+    "zodiac_to": 23,
+    "gender_to": "male",
+    "compatability": 95
+  }
+}
+]
